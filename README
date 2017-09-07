@@ -1,0 +1,17 @@
+20.1 Elastic.co deb repo 
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
+apt-get install apt-transport-https
+echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-5.x.list
+
+20.2 install openjdk-8-jre, elasticsearch, kibana & logstash
+Server:
+apt-get update && apt-get install openjdk-8-jre elasticsearch kibana logstash filebeat
+Client:
+apt-get update && apt-get install filebeat
+
+20.3. starting elk stack
+Server:
+systemctl start filebeat logstash elasticsearch kibana
+Client:
+systemctl start filebeat
+
