@@ -1,5 +1,4 @@
-20.1 Elastic.co deb repo 
-wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
+-elasticsearch | apt-key add -
 apt-get install apt-transport-https
 echo "deb https://artifacts.elastic.co/packages/5.x/apt stable main" | tee -a /etc/apt/sources.list.d/elastic-5.x.list
 
@@ -14,4 +13,3 @@ Server:
 systemctl start filebeat logstash elasticsearch kibana
 Client:
 systemctl start filebeat
-
