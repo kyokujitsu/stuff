@@ -67,6 +67,7 @@ plugins=(
   common-aliases
   extract
   iterm2
+  osx
   rsync
   screen
   sublime
