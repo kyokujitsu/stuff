@@ -34,7 +34,8 @@
 /sbin/iptables -t mangle -A PREROUTING -s 127.0.0.0/8 ! -i lo -j DROP  
 
 ### 6: Drop ICMP (you usually don't need this protocol) ### 
-/sbin/iptables -t mangle -A PREROUTING -p icmp -j DROP  
+##/sbin/iptables -t mangle -A PREROUTING -p icmp -j DROP  
+## breaks MTU discovery
 
 ### 7: Drop fragments in all chains ### 
 /sbin/iptables -t mangle -A PREROUTING -f -j DROP  
@@ -51,6 +52,7 @@
 /sbin/iptables -A INPUT -p tcp -m conntrack --ctstate NEW -j DROP  
 
 ### 11: Use SYNPROXY on all ports (disables connection limiting rule) ### 
+## --dport recommended
 iptables -t raw -A PREROUTING -p tcp -m tcp --syn -j CT --notrack 
 iptables -A INPUT -p tcp -m tcp -m conntrack --ctstate INVALID,UNTRACKED -j SYNPROXY --sack-perm --timestamp --wscale 7 --mss 1460 
 iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
