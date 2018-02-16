@@ -135,10 +135,9 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-export EDITOR=/usr/bin/nano
+export EDITOR=/usr/bin/vim
 export SVN_EDITOR="$EDITOR --nofork"
 export CVS_RSH=ssh
-export WWW_HOME=http://www.archlinux.org
 # }}}
 
 # {{{ Cleanup
