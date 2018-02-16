@@ -65,7 +65,7 @@ esac
 # globbing instead of external grep binary.
 
 # Dynamically modified variables. Do not change them!
-use_color=false
+use_color=true
 # sanitize TERM:
 safe_term=${TERM//[^[:alnum:]]/?}
 match_lhs=""
