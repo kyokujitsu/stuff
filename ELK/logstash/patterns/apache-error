@@ -1,0 +1,1 @@
+APACHE_ERROR_LOG ^\[(?<timestamp>%{DAY} %{MONTH} %{MONTHDAY} %{TIME} %{YEAR})\]\s+\[%{WORD:module}:%{LOGLEVEL:loglevel}\] \[pid %{POSINT:pid}?\]( \[client %{IPORHOST:clientip}:%{POSINT:clientport}\])?( %{DATA:errorcode}:)? %{GREEDYDATA:message}
