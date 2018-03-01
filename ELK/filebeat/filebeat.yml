@@ -3,7 +3,7 @@ filebeat.config.modules:
   path: /etc/filebeat/modules.d/*.yml
 
 filebeat.modules:
-- module: apache
+- module: apache2
   error:
   enabled: true
 
