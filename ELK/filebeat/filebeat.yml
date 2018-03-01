@@ -1,7 +1,9 @@
-filebeat.modules:
-- module: nginx
-  access:
+filebeat.config.modules:
   enabled: true
+  path: /etc/filebeat/modules.d/*.yml
+
+filebeat.modules:
+- module: apache
   error:
   enabled: true
 
@@ -10,46 +12,39 @@ filebeat.modules:
   enabled: true
 
 filebeat.prospectors:
-- input_type: log
+- type: log
   paths:
-    - /var/log/messages*
-    - /var/log/syslog*
-    - /var/log/*.log
+    - /var/log/web02/messages
   exclude_files: ["auth.log*"]
   exclude_files: [".gz$"]
   multiline:
   pattern: "^\\s"
   match: after
-  document_type: syslog
+  tag: [syslog]
 
-- input_type: log
+- type: log
   paths:
-    - /var/log/auth.log
+    - /var/log/web02/auth.log
   exclude_files: [".gz$"]
   multiline:
   pattern: "^\\s"
   match: after
-  document_type: auth
+  tag: [auth]
 
-- input_type: log
+- type: log
   paths:
-  - /var/log/nginx/access.log  
-  document_type: nginx-access
+  - /var/log/web02/apache_error/*error.log
+  tag: [apache-error-log]
 
-- input_type: log
+- type: log
   paths:
-  - /var/log/nginx/error.log
-  document_type: nginx-error
+  - /var/log/web02/php5-fpm.log
+  tag: [php-fpm-log]
 
-output:
-  logstash:
-    hosts: ["127.0.0.1:5044"]
-  console:
-    pretty: true
-  shipper:
-  logging:
-  files: 
+output.logstash:
+  hosts: ["localhost:5044"]
+  files:
     path: /var/log/filebeat
-    name: 
+    name:
     keepfiles: 7
     rotateeverybytes: 10485760 # 10 MB
