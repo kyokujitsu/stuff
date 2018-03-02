@@ -16,7 +16,7 @@
 #
 # Use a descriptive name for the node:
 #
-# node.name: SE-ELK-Central
+# node.name: test
 #
 # If omitted the node name will default to the machine's host name
 #
@@ -29,6 +29,10 @@ path.data: /var/lib/logstash
 #
 # ------------ Pipeline Settings --------------
 #
+# The ID of the pipeline.
+#
+# pipeline.id: main
+#
 # Set the number of workers that will, in parallel, execute the filters+outputs
 # stage of the pipeline.
 #
@@ -36,18 +40,14 @@ path.data: /var/lib/logstash
 #
 # pipeline.workers: 2
 #
-# How many workers should be used per output plugin instance
-#
-# pipeline.output.workers: 1
-#
 # How many events to retrieve from inputs before sending to filters+workers
 #
 # pipeline.batch.size: 125
 #
-# How long to wait before dispatching an undersized batch to filters+workers
-# Value is in milliseconds.
+# How long to wait in milliseconds while polling for the next event
+# before dispatching an undersized batch to filters+outputs
 #
-# pipeline.batch.delay: 5
+# pipeline.batch.delay: 50
 #
 # Force Logstash to exit during shutdown even if there are still inflight
 # events in memory. By default, logstash will refuse to quit until all
@@ -61,7 +61,8 @@ path.data: /var/lib/logstash
 #
 # Where to fetch the pipeline configuration for the main pipeline
 #
-path.config: /etc/logstash/conf.d
+# path.config:
+# path.config: /etc/logstash/conf.d
 #
 # Pipeline configuration string for the main pipeline
 #
@@ -78,12 +79,17 @@ path.config: /etc/logstash/conf.d
 #
 # How often to check if the pipeline configuration has changed (in seconds)
 #
-# config.reload.interval: 3
+# config.reload.interval: 3s
 #
 # Show fully compiled configuration as debug log message
 # NOTE: --log.level must be 'debug'
 #
 # config.debug: false
+#
+# When enabled, process escaped characters such as \n and \" in strings in the
+# pipeline configuration files.
+#
+# config.support_escapes: false
 #
 # ------------ Module Settings ---------------
 # Define modules here.  Modules definitions must be defined as an array.
@@ -104,6 +110,19 @@ path.config: /etc/logstash/conf.d
 #
 # modules:
 #
+# ------------ Cloud Settings ---------------
+# Define Elastic Cloud settings here.
+# Format of cloud.id is a base64 value e.g. dXMtZWFzdC0xLmF3cy5mb3VuZC5pbyRub3RhcmVhbCRpZGVudGlmaWVy
+# and it may have an label prefix e.g. staging:dXMtZ...
+# This will overwrite 'var.elasticsearch.hosts' and 'var.kibana.host'
+# cloud.id: <identifier>
+#
+# Format of cloud.auth is: <user>:<pass>
+# This is optional
+# If supplied this will overwrite 'var.elasticsearch.username' and 'var.elasticsearch.password'
+# If supplied this will overwrite 'var.kibana.username' and 'var.kibana.password'
+# cloud.auth: elastic:<password>
+#
 # ------------ Queuing Settings --------------
 #
 # Internal queuing model, "memory" for legacy in-memory based queuing and
@@ -117,9 +136,9 @@ path.config: /etc/logstash/conf.d
 # path.queue:
 #
 # If using queue.type: persisted, the page data files size. The queue data consists of
-# append-only data files separated into pages. Default is 250mb
+# append-only data files separated into pages. Default is 64mb
 #
-# queue.page_capacity: 250mb
+# queue.page_capacity: 64mb
 #
 # If using queue.type: persisted, the maximum number of unread events in the queue.
 # Default is 0 (unlimited)
@@ -157,7 +176,7 @@ path.config: /etc/logstash/conf.d
 
 # If using dead_letter_queue.enable: true, the maximum size of each dead letter queue. Entries
 # will be dropped if they would increase the size of the dead letter queue beyond this setting.
-# Deafault is 1024mb
+# Default is 1024mb
 # dead_letter_queue.max_bytes: 1024mb
 
 # If using dead_letter_queue.enable: true, the directory path where the data files will be stored.
