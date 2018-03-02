@@ -5,12 +5,14 @@ filebeat.config.modules:
 filebeat.modules:
 - module: apache2
   error:
-  enabled: true
+    enabled: true
 
 - module: system
   syslog:
-  enabled: true
-
+    enabled: true
+  auth:
+    enabled: true
+    
 filebeat.prospectors:
 - type: log
   paths:
@@ -20,7 +22,7 @@ filebeat.prospectors:
   multiline:
   pattern: "^\\s"
   match: after
-  tag: [syslog]
+  tags: ["syslog"]
 
 - type: log
   paths:
@@ -29,22 +31,25 @@ filebeat.prospectors:
   multiline:
   pattern: "^\\s"
   match: after
-  tag: [auth]
+  tags: ["auth"]
 
 - type: log
   paths:
   - /var/log/web02/apache_error/*error.log
-  tag: [apache-error-log]
+  tags: ["apache-error-log"]
 
 - type: log
   paths:
   - /var/log/web02/php5-fpm.log
-  tag: [php-fpm-log]
+  tags: ["php-fpm-log"]
 
 output.logstash:
-  hosts: ["localhost:5044"]
+  hosts: [":5044"]
   files:
     path: /var/log/filebeat
     name:
     keepfiles: 7
     rotateeverybytes: 10485760 # 10 MB
+
+setup.kibana:
+  host: ":5601"
