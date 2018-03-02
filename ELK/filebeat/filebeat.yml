@@ -2,22 +2,11 @@ filebeat.config.modules:
   enabled: true
   path: /etc/filebeat/modules.d/*.yml
 
-filebeat.modules:
-- module: apache2
-  error:
-    enabled: true
-
-- module: system
-  syslog:
-    enabled: true
-  auth:
-    enabled: true
-    
 filebeat.prospectors:
 - type: log
   enabled: true
   paths:
-    - /var/log/web02/messages
+    - /var/log/messages
   exclude_files: ["auth.log*"]
   exclude_files: [".gz$"]
   multiline:
@@ -38,13 +27,13 @@ filebeat.prospectors:
 - type: log
   enabled: true
   paths:
-  - /var/log/web02/apache_error/*error.log
+  - /var/log/apache_error/*error.log
   tags: ["apache-error-log"]
 
 - type: log
   enabled: true
   paths:
-  - /var/log/web02/php5-fpm.log
+  - /var/log/php5-fpm.log
   tags: ["php-fpm-log"]
 
 output.logstash:
