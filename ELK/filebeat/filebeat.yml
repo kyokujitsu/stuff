@@ -15,6 +15,7 @@ filebeat.modules:
     
 filebeat.prospectors:
 - type: log
+  enabled: true
   paths:
     - /var/log/web02/messages
   exclude_files: ["auth.log*"]
@@ -25,6 +26,7 @@ filebeat.prospectors:
   tags: ["syslog"]
 
 - type: log
+  enabled: true
   paths:
     - /var/log/web02/auth.log
   exclude_files: [".gz$"]
@@ -34,11 +36,13 @@ filebeat.prospectors:
   tags: ["auth"]
 
 - type: log
+  enabled: true
   paths:
   - /var/log/web02/apache_error/*error.log
   tags: ["apache-error-log"]
 
 - type: log
+  enabled: true
   paths:
   - /var/log/web02/php5-fpm.log
   tags: ["php-fpm-log"]
