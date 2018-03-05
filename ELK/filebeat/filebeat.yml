@@ -39,7 +39,7 @@ filebeat.prospectors:
   tags: ["php-fpm-log"]
 
 output.logstash:
-  hosts: ["10.60.0.140:5044"]
+  hosts: ["filebeat.se-medien.de:5044"]
   files:
     path: /var/log/filebeat
     name:
@@ -47,4 +47,4 @@ output.logstash:
     rotateeverybytes: 10485760 # 10 MB
 
 setup.kibana:
-  host: "10.60.0.140:5601"
+  host: "filebeat.se-medien.de:5601"
