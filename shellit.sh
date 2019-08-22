@@ -7,7 +7,8 @@ echo KEYMAP=de-latin1-nodeadkeys > /etc/vconsole.conf
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+#git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 wget https://raw.githubusercontent.com/kyokujitsu/stuff/master/zshrc -O ~/.zshrc && source .zshrc
