@@ -1,4 +1,5 @@
 echo "settings up zsh shell"
+
 sed -i '/s/#en_US.UTF-8/en_US.UTF-8/' /etc/locale.gen
 locale-gen
 echo LANG=de_DE.UTF-8 > /etc/locale.conf
