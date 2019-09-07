@@ -2,7 +2,7 @@ echo "settings up zsh shell"
 
 sed -i '/s/#en_US.UTF-8/en_US.UTF-8/' /etc/locale.gen
 locale-gen
-echo LANG=de_DE.UTF-8 > /etc/locale.conf
+echo LANG=en_US.UTF-8 > /etc/locale.conf
 echo KEYMAP=de-latin1-nodeadkeys > /etc/vconsole.conf
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
