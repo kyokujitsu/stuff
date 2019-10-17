@@ -7,7 +7,6 @@ echo KEYMAP=de-latin1-nodeadkeys > /etc/vconsole.conf
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-#git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
@@ -19,5 +18,5 @@ cd $HOME
 sed -i "s/POWERLEVEL9K_MODE='nerdfont-complete'/POWERLEVEL9K_MODE='awesome-fontconfig'/" .zshrc
 
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
-echo "set backspace=2 
+echo "set backspace=2
 set whichwrap+=<,>,h,l,[,]" >>~/.vim_runtime/my_configs.vim

@@ -1,1 +1,0 @@
-ELASTICSEARCHLOG \[(?<timestamp>.*)\]\[%{LOGLEVEL:level}\s*\]\[(?<module>[^\]\s]*)\s*\] \[(?<nodename>[^\]]*)\] (?<msg>.*)

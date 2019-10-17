@@ -1,5 +1,0 @@
-APACHE_ERROR_LOG ^\[(?<timestamp>%{DAY} %{MONTH} %{MONTHDAY} %{TIME} %{YEAR})\] \[%{WORD:apache2.error.module}:%{LOGLEVEL:apache2.error.level}] \[%{WORD:apache2.error.pid} %{POSINT}] \[client %{IP:apache2.error.clientip}:%{IPORHOST:apache2.error.clientport}] %{GREEDYDATA:apache2.error.message}
-APACHE_ERROR_LOG_MODSEC ^\[(?<timestamp>%{DAY} %{MONTH} %{MONTHDAY} %{TIME} %{YEAR})\] \[:%{DATA:apache2.error.loglevel}] \[pid %{POSINT:apache2.error.pid}] \[client %{IP:apache2.error.clientip}] %{DATA:apache2.error.module} %{GREEDYDATA:apache2.error.message}
-APACHE_ERROR_LOG_PHPFPM ^\[(?<timestamp>%{DAY} %{MONTH} %{MONTHDAY} %{TIME} %{YEAR})\] \[%{DATA:apache2.error.module}:%{DATA:apache2.error.loglevel}] \[pid %{POSINT:apache2.error.pid}] %{DATA:apache2.error.message1}%{SPACE}: \[client %{DATA:apache2.error.clientip}:%{DATA:apache2.error.clientport}] %{GREEDYDATA:apache2.error.message2}
-APACHE_ERROR_LOG_REWRITE ^\[(?<timestamp>%{DAY} %{MONTH} %{MONTHDAY} %{TIME} %{YEAR})\] \[%{DATA:apache2.error.module}:%{DATA:apache2.error.loglevel}] \[pid %{POSINT:apache2.error.pid}] %{GREEDYDATA:apache2.error.message}
-
