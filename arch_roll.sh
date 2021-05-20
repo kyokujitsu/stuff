@@ -12,7 +12,7 @@ echo "[X] - locale, keymaps & time"
 # Initializing pacman, updating mirrorlist, getting basic tools
 pacman -Syu && pacman -S reflector
 reflector -f 20 -c Germany --threads 8 -p http --score 20 -a 24 | tee /etc/pacman.d/mirrorlist
-pacman -S git vim mc zsh wget curl exa sudo htop rsync base-devel fzf neovim hstr
+pacman -S git vim mc zsh wget curl exa sudo htop rsync base-devel fzf neovim hstr go
 echo "[X] - init. pacman, mirrorlist, tools"
 
 # Customizing zsh with powerlevel10k
@@ -40,7 +40,7 @@ set whichwrap+=<,>,h,l,[,]" >>~/.vim_runtime/my_configs.vim
 useradd -m $USER
 passwd $USER
 echo "[X] - added user: $USER"
-echo "dan  ALL=(ALL) :ALL" >>/etc/sudoers
+echo "dan  ALL=(ALL:ALL) ALL" >>/etc/sudoers
 echo "[X] - sudoer $USER added"
 cd /home/$USER; sudo -u $USER git clone https://aur.archlinux.org/yay.git; cd yay; sudo -u $USER makepkg -si --noconfirm
 echo "[X] - yay installed"
